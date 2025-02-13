@@ -34,7 +34,7 @@ jobs:
       run: mvn dependency:tree > dependency-tree.txt
 
     - name: Upload dependency tree artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dependency-tree
         path: dependency-tree.txt
