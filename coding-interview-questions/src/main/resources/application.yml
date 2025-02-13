@@ -1,0 +1,3 @@
+spring:
+  application.name: coding-interview-questions
+server.port: 8081
