@@ -2,6 +2,8 @@ package org.algoexpert.algorithms.arrays;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Interface for array-related algorithms.
  * <p>
@@ -20,10 +22,6 @@ public interface ArraysAlgorithms {
 
     /**
      * Finds a pair of numbers in the given array that sum up to the target sum.
-     * <p>
-     * This method searches the provided array for two numbers that add up to the specified target sum. If such a pair
-     * is found, it returns an array containing the two numbers. If no such pair exists, it returns an empty array.
-     * </p>
      *
      * @param array the array of integers to search
      * @param targetSum the target sum to find in the array
@@ -31,4 +29,13 @@ public interface ArraysAlgorithms {
      * exists
      */
     int[] twoNumberSum(int[] array, int targetSum);
+    /**
+     * Finds all unique triplets in the given array that sum up to the target sum.
+     *
+     * @param array the input array of distinct integers
+     * @param targetSum the target sum to find in the array
+     * @return a list of integer arrays, where each array contains three integers that sum up to the target sum,
+     * or an empty list if no such triplet exists
+     */
+    List<Integer[]> threeNumberSum(int[] array, int targetSum);
 }

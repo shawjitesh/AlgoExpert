@@ -4,6 +4,7 @@ import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
 import org.springframework.stereotype.Component;
 
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * <p> Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum.
@@ -43,6 +44,7 @@ public class TwoNumberSum implements ArraysAlgorithms {
      * @param targetSum the target sum to find in the array
      * @return an array containing two integers that sum up to the target sum, or an empty array if no such pair exists
      */
+    @Override
     public int[] twoNumberSum(int[] array, int targetSum) {
 
         Hashtable<Integer, Boolean> arrayElementsHashtable = new Hashtable<>();
@@ -57,5 +59,14 @@ public class TwoNumberSum implements ArraysAlgorithms {
         }
 
         return new int[0];
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }
