@@ -21,9 +21,39 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Utility class for populating a map with data structure categories and their corresponding methods using Java Reflection.
+ * <p>
+ * This class provides a method to populate a map where the key is the display name of a data structure category
+ * and the value is an array of {@link Method} objects representing the methods of the corresponding algorithm class.
+ * </p>
+ * <p>
+ * The method iterates through all values of the {@link DataStructureCategories} enum and, based on the category,
+ * retrieves the declared methods of the corresponding algorithm class. It then puts the category's display name
+ * and the array of methods into the provided map.
+ * </p>
+ * <p>
+ * This class is annotated with {@link Component} to indicate that it is a Spring-managed component.
+ * </p>
+ *
+ * @author Jitesh Shaw
+ */
+
 @Component
 public class JavaReflectionUtil {
 
+    /**
+     * Populates the provided map with data structure categories and their corresponding methods.
+     * <p>
+     * This method iterates through all values of the {@link DataStructureCategories} enum and, based on the category,
+     * retrieves the declared methods of the corresponding algorithm class. It then puts the category's display name
+     * and the array of methods into the provided map.
+     * </p>
+     *
+     * @param dataStructureCategoriesAndMethodsMap a map where the key is the display name of a data structure category
+     *                                             and the value is an array of {@link Method} objects representing
+     *                                             the methods of the corresponding algorithm class.
+     */
     public void populateDataStructureCategoriesAndMethodsMap(HashMap<String, Method[]> dataStructureCategoriesAndMethodsMap) {
 
         Arrays.stream(DataStructureCategories.values()).forEach(dataStructureCategory -> {

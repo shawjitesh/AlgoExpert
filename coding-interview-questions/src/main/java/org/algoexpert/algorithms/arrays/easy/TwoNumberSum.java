@@ -45,14 +45,14 @@ public class TwoNumberSum implements ArraysAlgorithms {
      */
     public int[] twoNumberSum(int[] array, int targetSum) {
 
-        Hashtable<Integer, Boolean> numbers = new Hashtable<>();
+        Hashtable<Integer, Boolean> arrayElementsHashtable = new Hashtable<>();
 
         for(int element : array) {
             int potentialMatch = targetSum - element;
-            if(numbers.containsKey(potentialMatch)) {
+            if(arrayElementsHashtable.containsKey(potentialMatch)) {
                 return new int[] {potentialMatch, element};
             } else {
-                numbers.put(element, true);
+                arrayElementsHashtable.put(element, true);
             }
         }
 
