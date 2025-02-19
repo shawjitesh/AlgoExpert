@@ -22,7 +22,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * Utility class for populating a map with data structure categories and their corresponding methods using Java Reflection.
+ * Utility class for populating a map with data structure categories and their corresponding methods using Java
+ * Reflection.
  * <p>
  * This class provides a method to populate a map where the key is the display name of a data structure category
  * and the value is an array of {@link Method} objects representing the methods of the corresponding algorithm class.
@@ -54,7 +55,8 @@ public class JavaReflectionUtil {
      *                                             and the value is an array of {@link Method} objects representing
      *                                             the methods of the corresponding algorithm class.
      */
-    public void populateDataStructureCategoriesAndMethodsMap(HashMap<String, Method[]> dataStructureCategoriesAndMethodsMap) {
+    public void populateDataStructureCategoriesAndMethodsMap(HashMap<String, Method[]>
+                                                                     dataStructureCategoriesAndMethodsMap) {
 
         Arrays.stream(DataStructureCategories.values()).forEach(dataStructureCategory -> {
             switch(dataStructureCategory) {

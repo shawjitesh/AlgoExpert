@@ -4,9 +4,11 @@ import jakarta.annotation.PostConstruct;
 import org.algoexpert.services.ArraysService;
 import org.algoexpert.util.JavaReflectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Method;
@@ -18,14 +20,14 @@ import java.util.HashMap;
  * <p>
  * This class provides endpoints to execute algorithms based on the specified data structure category and algorithm
  * name. It uses the {@link RestController} annotation to indicate that it is a RESTful web service controller and the
- * {@link RequestMapping} annotation to map requests to the "/api/algorithms" path.
+ * {@link RequestMapping} annotation to map requests to the "/api" path.
  * </p>
  *
  * @author Jitesh Shaw
  */
 
 @RestController
-@RequestMapping("/api/algorithms")
+@RequestMapping("/api")
 public class AlgorithmController {
 
     private final JavaReflectionUtil javaReflectionUtil;
@@ -66,8 +68,8 @@ public class AlgorithmController {
     /**
      * Executes the specified algorithm under the given data structure category.
      * <p>
-     * This method is mapped to a GET request with the specified data structure category and algorithm name as path
-     * variables. It checks if the provided data structure category and algorithm name exist in the
+     * This method is mapped to a GET request with the specified data structure category and algorithm name as request
+     * parameters. It checks if the provided data structure category and algorithm name exist in the
      * {@code dataStructureCategoriesAndMethodsMap}. If they exist, it calls the
      * {@link ArraysService#executeAlgorithm(String)} method to execute the algorithm. If they do not exist, it returns
      * a message indicating that the data structure category or algorithm is not available.
@@ -77,19 +79,28 @@ public class AlgorithmController {
      * @param algorithmName the name of the algorithm to execute
      * @return a message indicating the result of the algorithm execution
      */
-    @GetMapping("/{datastructureCategory}/{algorithmName}")
-    public String executeAlgorithm(@PathVariable String datastructureCategory, @PathVariable String algorithmName) {
+    @GetMapping("/executeAlgorithm")
+    public ResponseEntity<String> executeAlgorithm(@RequestParam(value = "datastructureCategory",
+                                                               defaultValue = "arrays")
+                                       String datastructureCategory,
+                                                   @RequestParam(value = "algorithmName",
+                                                           defaultValue = "twoNumberSum")
+                                       String algorithmName) {
 
         if(dataStructureCategoriesAndMethodsMap.containsKey(datastructureCategory) &&
                 Arrays.stream(dataStructureCategoriesAndMethodsMap.get(datastructureCategory))
                         .anyMatch(method -> method.getName().equals(algorithmName))) {
-            arraysService.executeAlgorithm(algorithmName);
+            if(arraysService.executeAlgorithm(algorithmName)) {
+                return ResponseEntity.ok("Successfully executed algorithm \"" + algorithmName + "\" under data " +
+                        "structure category \"" + datastructureCategory + "\"");
+            }
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error while executing algorithm \"" + algorithmName + "\" under data structure category \"" +
+                            datastructureCategory + "\"");
         } else {
-            return "Data structure category \"" + datastructureCategory + "\" or algorithm \"" + algorithmName +
-                    "\" not available";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Data structure category \"" + datastructureCategory + "\" or algorithm \"" + algorithmName +
+                            "\" not available");
         }
-
-        return "Successfully executed algorithm \"" + algorithmName + "\" under data structure category \"" +
-                datastructureCategory + "\"";
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import static org.algoexpert.util.AlgorithmNames.THREE_NUMBER_SUM;
@@ -37,6 +36,7 @@ public class ArraysService {
 
     private final LoggerUtil loggerUtil;
     private static final Logger LOGGER = LoggerFactory.getLogger(ArraysService.class);
+    private final BufferedReader bufferedReader;
 
     /**
      * Constructs an instance of the ArraysService.
@@ -49,8 +49,9 @@ public class ArraysService {
      * @param loggerUtil an instance of {@link LoggerUtil} used for logging prompts and warnings
      */
     @Autowired
-    public ArraysService(LoggerUtil loggerUtil) {
+    public ArraysService(LoggerUtil loggerUtil, BufferedReader bufferedReader) {
         this.loggerUtil = loggerUtil;
+        this.bufferedReader = bufferedReader;
     }
 
     /**
@@ -62,18 +63,30 @@ public class ArraysService {
      *
      * @param algorithmName the name of the algorithm to execute
      */
-    public void executeAlgorithm(String algorithmName) {
+    public boolean executeAlgorithm(String algorithmName) {
 
         switch (algorithmName) {
             case TWO_NUMBER_SUM:
-                executeTwoNumberSum();
+                try {
+                    executeTwoNumberSum();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, THREE_NUMBER_SUM);
+                    return false;
+                }
                 break;
             case THREE_NUMBER_SUM:
+                try {
                     executeThreeNumberSum();
-                    break;
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, THREE_NUMBER_SUM);
+                    return false;
+                }
+                break;
             default:
                 LOGGER.info("Algorithm not available");
         }
+
+        return true;
     }
 
     /**
@@ -89,7 +102,7 @@ public class ArraysService {
      */
     private void executeTwoNumberSum() {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             loggerUtil.promptToEnterArraySize(LOGGER);
             int arraySize = Integer.parseInt(bufferedReader.readLine());
             int[] array = new int[arraySize];
@@ -125,9 +138,9 @@ public class ArraysService {
      * The method handles any {@link IOException} that may occur during input reading and logs an error message.
      * </p>
      */
-    private void executeThreeNumberSum() {
+    private void executeThreeNumberSum() throws RuntimeException {
 
-        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             loggerUtil.promptToEnterArraySize(LOGGER);
             int arraySize = Integer.parseInt(bufferedReader.readLine());
             int[] array = new int[arraySize];
@@ -152,6 +165,7 @@ public class ArraysService {
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+            throw new RuntimeException("Error while reading input", e.getCause());
         }
     }
 }

@@ -2,3 +2,5 @@ spring:
   application.name: coding-interview-questions
 
 server.port: 8081
+
+springdoc.api-docs.path: /coding-interview-questions-openapi

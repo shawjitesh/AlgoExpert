@@ -20,7 +20,8 @@ public class CodingInterviewQuestionsApplication {
     /**
      * The main method which serves as the entry point for the Spring Boot application.
      * <p>
-     * This method uses {@link SpringApplication#run(Class, String...)} to launch the Coding Interview Questions application.
+     * This method uses {@link SpringApplication#run(Class, String...)} to launch the Coding Interview Questions
+     * application.
      * </p>
      *
      * @param args command-line arguments passed to the application
