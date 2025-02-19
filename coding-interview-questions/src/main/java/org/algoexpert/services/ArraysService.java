@@ -2,6 +2,7 @@ package org.algoexpert.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.algoexpert.algorithms.arrays.easy.TwoNumberSum;
+import org.algoexpert.algorithms.arrays.hard.FourNumberSum;
 import org.algoexpert.algorithms.arrays.medium.ThreeNumberSum;
 import org.algoexpert.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -13,8 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
-import static org.algoexpert.util.AlgorithmNames.THREE_NUMBER_SUM;
-import static org.algoexpert.util.AlgorithmNames.TWO_NUMBER_SUM;
+import static org.algoexpert.util.AlgorithmNames.*;
 
 /**
  * Service class for executing array-related algorithms.
@@ -79,6 +79,14 @@ public class ArraysService {
                     executeThreeNumberSum();
                 } catch (RuntimeException e) {
                     loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, THREE_NUMBER_SUM);
+                    return false;
+                }
+                break;
+            case FOUR_NUMBER_SUM:
+                try {
+                    executeFourNumberSum();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, FOUR_NUMBER_SUM);
                     return false;
                 }
                 break;
@@ -162,6 +170,37 @@ public class ArraysService {
             for (Integer[] triplet : result) {
                 LOGGER.info("The triplet of numbers that sum up to the target sum are: {}, {}, and {}", triplet[0],
                         triplet[1], triplet[2]);
+            }
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+            throw new RuntimeException("Error while reading input", e.getCause());
+        }
+    }
+
+    private void executeFourNumberSum() {
+
+        try {
+            loggerUtil.promptToEnterArraySize(LOGGER);
+            int arraySize = Integer.parseInt(bufferedReader.readLine());
+            int[] array = new int[arraySize];
+
+            loggerUtil.promptToEnterArrayElements(LOGGER);
+            for (int i = 0; i < arraySize; i++) {
+                array[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+
+            loggerUtil.promptToEnterTargetSum(LOGGER);
+            int targetSum = Integer.parseInt(bufferedReader.readLine());
+
+            List<Integer[]> result = new FourNumberSum().fourNumberSum(array, targetSum);
+            if (result.isEmpty()) {
+                LOGGER.info("No quadruplet of numbers sum up to the target sum");
+                return;
+            }
+
+            for (Integer[] quadruplet : result) {
+                LOGGER.info("The quadruplet of numbers that sum up to the target sum are: {}, {}, {}, and {}",
+                        quadruplet[0], quadruplet[1], quadruplet[2], quadruplet[3]);
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);

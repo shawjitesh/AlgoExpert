@@ -18,5 +18,9 @@ public class AlgorithmNames {
      * Constant representing the name of the "Three Number Sum" algorithm.
      */
     public static final String THREE_NUMBER_SUM = "threeNumberSum";
+    /**
+     * Constant representing the name of the "Four Number Sum" algorithm.
+     */
+    public static final String FOUR_NUMBER_SUM = "fourNumberSum";
 
 }

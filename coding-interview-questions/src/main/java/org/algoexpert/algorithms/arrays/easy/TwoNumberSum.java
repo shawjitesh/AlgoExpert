@@ -1,7 +1,6 @@
 package org.algoexpert.algorithms.arrays.easy;
 
 import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
-import org.springframework.stereotype.Component;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
  * @author Jitesh Shaw
  */
 
-@Component
 public class TwoNumberSum implements ArraysAlgorithms {
 
     /**
@@ -67,6 +65,15 @@ public class TwoNumberSum implements ArraysAlgorithms {
      */
     @Override
     public List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public List<Integer[]> fourNumberSum(int[] array, int targetSum) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

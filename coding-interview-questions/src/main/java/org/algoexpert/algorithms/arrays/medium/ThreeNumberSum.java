@@ -29,15 +29,6 @@ import java.util.List;
 public class ThreeNumberSum implements ArraysAlgorithms {
 
     /**
-     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
-     * is not provided in this class.
-     */
-    @Override
-    public int[] twoNumberSum(int[] array, int targetSum) {
-        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
-    }
-
-    /**
      * This method takes a non-empty array of distinct integers and an integer representing a target sum. It returns a
      * list of integer arrays, where each array contains three numbers from the input array that sum up to the target
      * sum. If no such triplet exists, it returns an empty list.
@@ -79,5 +70,23 @@ public class ThreeNumberSum implements ArraysAlgorithms {
         }
 
         return result;
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public int[] twoNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public List<Integer[]> fourNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

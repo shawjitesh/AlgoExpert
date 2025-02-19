@@ -38,4 +38,13 @@ public interface ArraysAlgorithms {
      * or an empty list if no such triplet exists
      */
     List<Integer[]> threeNumberSum(int[] array, int targetSum);
+    /**
+     * Finds all unique quadruplets in the given array that sum up to the target sum.
+     *
+     * @param array the input array of distinct integers
+     * @param targetSum the target sum to find in the array
+     * @return a list of integer arrays, where each array contains four integers that sum up to the target sum,
+     * or an empty list if no such quadruplet exists
+     */
+    List<Integer[]> fourNumberSum(int[] array, int targetSum);
 }
