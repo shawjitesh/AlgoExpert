@@ -3,6 +3,7 @@ package org.algoexpert.algorithms.arrays;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for array-related algorithms.
@@ -47,4 +48,13 @@ public interface ArraysAlgorithms {
      * or an empty list if no such quadruplet exists
      */
     List<Integer[]> fourNumberSum(int[] array, int targetSum);
+    /**
+     * Finds the best block to live in based on the minimum distance to all required facilities.
+     *
+     * @param blocks a list of maps, where each map represents a block and contains the availability of required
+     *               facilities
+     * @param reqs an array of required facilities
+     * @return the index of the block that has the smallest maximum distance to any required facility
+     */
+    int apartmentHunting(List<Map<String, Boolean>> blocks, String[] reqs);
 }

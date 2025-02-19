@@ -1,9 +1,11 @@
 package org.algoexpert.services;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.algoexpert.algorithms.arrays.easy.TwoNumberSum;
 import org.algoexpert.algorithms.arrays.hard.FourNumberSum;
 import org.algoexpert.algorithms.arrays.medium.ThreeNumberSum;
+import org.algoexpert.algorithms.arrays.veryhard.ApartmentHunting;
 import org.algoexpert.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.algoexpert.util.AlgorithmNames.*;
 
@@ -87,6 +92,14 @@ public class ArraysService {
                     executeFourNumberSum();
                 } catch (RuntimeException e) {
                     loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, FOUR_NUMBER_SUM);
+                    return false;
+                }
+                break;
+            case APARTMENT_HUNTING:
+                try {
+                    executeApartmentHunting();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, APARTMENT_HUNTING);
                     return false;
                 }
                 break;
@@ -177,6 +190,18 @@ public class ArraysService {
         }
     }
 
+    /**
+     * Executes the "Four Number Sum" algorithm.
+     * <p>
+     * This method reads the array size, array elements, and target sum from the standard input. It then uses the
+     * {@link FourNumberSum#fourNumberSum(int[], int)} method to find all unique quadruplets in the array that sum up to
+     * the target sum. If such quadruplets are found, it logs each quadruplet; otherwise, it logs that no quadruplet
+     * was found.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
     private void executeFourNumberSum() {
 
         try {
@@ -201,6 +226,58 @@ public class ArraysService {
             for (Integer[] quadruplet : result) {
                 LOGGER.info("The quadruplet of numbers that sum up to the target sum are: {}, {}, {}, and {}",
                         quadruplet[0], quadruplet[1], quadruplet[2], quadruplet[3]);
+            }
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+            throw new RuntimeException("Error while reading input", e.getCause());
+        }
+    }
+
+    /**
+     * Executes the "Apartment Hunting" algorithm.
+     * <p>
+     * This method reads the number of blocks, the number of requirements, and the requirements themselves from the
+     * standard input. It then reads the availability of each requirement for each block and stores this information in
+     * a list of maps. The method uses the {@link ApartmentHunting#apartmentHunting(List, String[])} method to find the
+     * best block to live in based on the minimum distance to all required facilities.
+     * If a block satisfies all requirements, it logs the index of that block; otherwise, it logs that no block
+     * satisfies all requirements.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
+    private void executeApartmentHunting() {
+
+        try {
+            LOGGER.info("Enter the number of blocks: ");
+            int numBlocks = Integer.parseInt(bufferedReader.readLine());
+
+            LOGGER.info("Enter the number of requirements: ");
+            int numReqs = Integer.parseInt(bufferedReader.readLine());
+
+            String[] reqs = new String[numReqs];
+            LOGGER.info("Enter the requirements: ");
+            for (int i = 0; i < numReqs; i++) {
+                reqs[i] = bufferedReader.readLine();
+            }
+
+            List<Map<String, Boolean>> blockDetails = new ArrayList<>();
+            for (int i = 0; i < numBlocks; i++) {
+                Map<String, Boolean> block = new HashMap<>();
+                LOGGER.info("Enter the availability of requirements for block {}: ", i + 1);
+                for (int j = 0; j < numReqs; j++) {
+                    LOGGER.info("Enter the availability of requirement {} in block {}: ", reqs[j], i + 1);
+                    block.put(reqs[j], Boolean.parseBoolean(bufferedReader.readLine()));
+                }
+                blockDetails.add(block);
+            }
+
+            int result = new ApartmentHunting().apartmentHunting(blockDetails, reqs);
+            if (result == -1) {
+                LOGGER.info("No block satisfies all requirements");
+            } else {
+                LOGGER.info("The block that satisfies all requirements is: {}", result);
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);

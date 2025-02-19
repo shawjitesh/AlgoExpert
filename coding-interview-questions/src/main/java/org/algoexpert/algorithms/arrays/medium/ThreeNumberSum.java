@@ -5,6 +5,7 @@ import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum. The
@@ -87,6 +88,15 @@ public class ThreeNumberSum implements ArraysAlgorithms {
      */
     @Override
     public List<Integer[]> fourNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public int apartmentHunting(List<Map<String, Boolean>> blocks, String[] reqs) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

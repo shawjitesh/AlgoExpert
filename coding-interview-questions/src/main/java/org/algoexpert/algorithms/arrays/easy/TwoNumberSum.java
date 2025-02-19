@@ -2,8 +2,9 @@ package org.algoexpert.algorithms.arrays.easy;
 
 import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p> Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum.
@@ -45,14 +46,14 @@ public class TwoNumberSum implements ArraysAlgorithms {
     @Override
     public int[] twoNumberSum(int[] array, int targetSum) {
 
-        Hashtable<Integer, Boolean> arrayElementsHashtable = new Hashtable<>();
+        Map<Integer, Boolean> arrayElementsAsDifference = new HashMap<>();
 
         for(int element : array) {
-            int potentialMatch = targetSum - element;
-            if(arrayElementsHashtable.containsKey(potentialMatch)) {
-                return new int[] {potentialMatch, element};
+            int difference = targetSum - element;
+            if(arrayElementsAsDifference.containsKey(difference)) {
+                return new int[] {difference, element};
             } else {
-                arrayElementsHashtable.put(element, true);
+                arrayElementsAsDifference.put(element, true);
             }
         }
 
@@ -74,6 +75,15 @@ public class TwoNumberSum implements ArraysAlgorithms {
      */
     @Override
     public List<Integer[]> fourNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public int apartmentHunting(List<Map<String, Boolean>> blocks, String[] reqs) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

@@ -22,5 +22,9 @@ public class AlgorithmNames {
      * Constant representing the name of the "Four Number Sum" algorithm.
      */
     public static final String FOUR_NUMBER_SUM = "fourNumberSum";
+    /**
+     * Constant representing the name of the "Apartment Hunting" algorithm.
+     */
+    public static final String APARTMENT_HUNTING = "apartmentHunting";
 
 }

@@ -2,9 +2,7 @@ package org.algoexpert.algorithms.arrays.hard;
 
 import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 /**
  * Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum. The
@@ -45,9 +43,10 @@ public class FourNumberSum implements ArraysAlgorithms {
      * @return a list of integer arrays, where each array contains four integers that sum up to the target sum,
      * or an empty list if no such quadruplet exists
      */
+    @Override
     public List<Integer[]> fourNumberSum(int[] array, int targetSum) {
 
-        Hashtable<Integer, List<Integer[]>> allPairSums = new Hashtable<>();
+        Map<Integer, List<Integer[]>> allPairSums = new HashMap<>();
         List<Integer[]> quadruplets = new ArrayList<>();
 
         int n = array.length;
@@ -92,6 +91,15 @@ public class FourNumberSum implements ArraysAlgorithms {
      */
     @Override
     public List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public int apartmentHunting(List<Map<String, Boolean>> blocks, String[] reqs) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }
