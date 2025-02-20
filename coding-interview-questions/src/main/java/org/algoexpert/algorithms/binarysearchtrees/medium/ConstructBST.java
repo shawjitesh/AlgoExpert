@@ -102,19 +102,26 @@ public class ConstructBST implements BinarySearchTreesAlgorithms {
          */
         public BST insert(int value) {
 
-            if (value < this.value) {
-                if (this.left == null) {
-                    this.left = new BST(value);
+            BST currentNode = this;
+
+            while (true) {
+                if (value < currentNode.value) {
+                    if (currentNode.left == null) {
+                        currentNode.left = new BST(value);
+                        break;
+                    } else {
+                        currentNode = currentNode.left;
+                    }
                 } else {
-                    this.left.insert(value);
-                }
-            } else {
-                if (this.right == null) {
-                    this.right = new BST(value);
-                } else {
-                    this.right.insert(value);
+                    if (currentNode.right == null) {
+                        currentNode.right = new BST(value);
+                        break;
+                    } else {
+                        currentNode = currentNode.right;
+                    }
                 }
             }
+
             return this;
         }
 
@@ -131,21 +138,19 @@ public class ConstructBST implements BinarySearchTreesAlgorithms {
          */
         public boolean contains(int value) {
 
-            if (value < this.value) {
-                if (this.left == null) {
-                    return false;
+            BST currentNode = this;
+
+            while (currentNode != null) {
+                if (value < currentNode.value) {
+                    currentNode = currentNode.left;
+                } else if (value > currentNode.value) {
+                    currentNode = currentNode.right;
                 } else {
-                    return this.left.contains(value);
+                    return true;
                 }
-            } else if (value > this.value) {
-                if (this.right == null) {
-                    return false;
-                } else {
-                    return this.right.contains(value);
-                }
-            } else {
-                return true;
             }
+
+            return false;
         }
 
         /**
@@ -178,32 +183,35 @@ public class ConstructBST implements BinarySearchTreesAlgorithms {
          */
         private void remove(int value, BST parent) {
 
-            if (value < this.value) {
-                if (this.left != null) {
-                    this.left.remove(value, this);
-                }
-            } else if (value > this.value) {
-                if (this.right != null) {
-                    this.right.remove(value, this);
-                }
-            } else {
-                if (this.left != null && this.right != null) {
-                    this.value = this.right.getMinValue();
-                    this.right.remove(this.value, this);
-                } else if (parent == null) {
-                    if (this.left != null) {
-                        this.value = this.left.value;
-                        this.right = this.left.right;
-                        this.left = this.left.left;
-                    } else if (this.right != null) {
-                        this.value = this.right.value;
-                        this.left = this.right.left;
-                        this.right = this.right.right;
+            BST currentNode = this;
+
+            while (currentNode != null) {
+                if (value < currentNode.value) {
+                    parent = currentNode;
+                    currentNode = currentNode.left;
+                } else if (value > currentNode.value) {
+                    parent = currentNode;
+                    currentNode = currentNode.right;
+                } else {
+                    if (currentNode.left != null && currentNode.right != null) {
+                        currentNode.value = currentNode.right.getMinValue();
+                        currentNode.right.remove(currentNode.value, currentNode);
+                    } else if (parent == null) {
+                        if (currentNode.left != null) {
+                            currentNode.value = currentNode.left.value;
+                            currentNode.right = currentNode.left.right;
+                            currentNode.left = currentNode.left.left;
+                        } else if (currentNode.right != null) {
+                            currentNode.value = currentNode.right.value;
+                            currentNode.left = currentNode.right.left;
+                            currentNode.right = currentNode.right.right;
+                        }
+                    } else if (parent.left == currentNode) {
+                        parent.left = (currentNode.left != null) ? currentNode.left : currentNode.right;
+                    } else if (parent.right == currentNode) {
+                        parent.right = (currentNode.left != null) ? currentNode.left : currentNode.right;
                     }
-                } else if (parent.left == this) {
-                    parent.left = (this.left != null) ? this.left : this.right;
-                } else if (parent.right == this) {
-                    parent.right = (this.left != null) ? this.left : this.right;
+                    break;
                 }
             }
         }
