@@ -2,6 +2,35 @@ package org.algoexpert.algorithms.binarysearchtrees.easy;
 
 import org.algoexpert.algorithms.binarysearchtrees.BinarySearchTreesAlgorithms;
 
+/**
+ * Write a function that takes in a Binary Search Tree (BST) and a target integer value and returns the closest value to
+ * the target value contained in the BST.
+ * <p> You can assume that there will only be one closest value.
+ * <p> Each BST node has an integer value, a left child, and a right child node. A node is said to be valid BST if and
+ * only it satisfies the BST property; its value is strictly greater than the values of every node to is left; its value
+ * is less than or equal to the values of every node to its right; and its children nodes are either valid BST nodes
+ * themselves or None/null.
+ * <pre>
+ * Sample Input:
+ * tree =      10
+ *          /      \
+ *         5       15
+ *       /   \    /   \
+ *      2     5  13   22
+ *     /          \
+ *    1           14
+ * target = 12
+ * Sample Output:
+ * 13
+ *
+ * Optimal Space & Time Complexity:
+ * Average: O(log(n)) time | O(1) space - where n is the number of nodes in the BST || Worst: O(n) time | O(1) space -
+ * where n is the number of nodes in the BST
+ * </pre>
+ *
+ * @author Jitesh Shaw
+ */
+
 public class FindClosestValueInBST implements BinarySearchTreesAlgorithms {
 
     /**
