@@ -9,7 +9,58 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-
+/**
+ * Write a BST class for a Binary Search Tree. The class should support:
+ * <ul>
+ *     <li>Inserting values with the insert method.</li>
+ *     <li>Removing values with the remove method; this method should only remove the first instance of a given
+ *          value.</li>
+ *     <li>Searching for values with the contains method.</li>
+ * </ul>
+ * <p> Note that you can't remove values from a single-node tree. In other words, calling the remove method on a
+ * single-node tree should simply do nothing.
+ * <p> Each BST node has an integer value, a left child node, and a right child node. A node is said to be a valid BST
+ * node if and only if it satisfies the BST property: its value is strictly greater than the values of every node to its
+ * left; its value is less than or equal to the values of every node to tis right; and its children nodes are either
+ * valid BST nodes themselves or None/null.
+ * <pre>
+ * Sample Usage:
+ * // Assume the following BST has already been created:
+ *
+ *             10
+ *          /      \
+ *         5       15
+ *       /   \    /   \
+ *      2     5  13   22
+ *     /          \
+ *    1           14
+ *
+ * // All operations below are performed sequentially.
+ * insert(12):
+ *             10
+ *          /      \
+ *         5       15
+ *       /   \    /   \
+ *      2     5  13   22
+ *     /        / \
+ *    1        12  14
+ * remove(10):
+ *             12
+ *          /      \
+ *         5       15
+ *       /   \    /   \
+ *      2     5  13   22
+ *     /           \
+ *    1            14
+ * contains(15): true
+ *
+ * Optimal Space & Time Complexity:
+ * Average (all 3 methods): O(log(n)) time | O(1) space - where n is the number of nodes in the BST ||
+ * Worst (all 3 methods): O(n) time | O(1) space - where n is the number of nodes in the BST
+ * </pre>
+ *
+ * @author Jitesh Shaw
+ */
 
 @Slf4j
 public class ConstructBST implements BinarySearchTreesAlgorithms {
