@@ -1,4 +1,4 @@
-package org.algoexpert.util;
+package org.algoexpert.utils;
 
 import org.algoexpert.algorithms.arrays.ArraysAlgorithms;
 import org.algoexpert.algorithms.binarysearchtrees.BinarySearchTreesAlgorithms;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Utility class for populating a map with data structure categories and their corresponding methods using Java
@@ -51,73 +51,73 @@ public class JavaReflectionUtil {
      * and the array of methods into the provided map.
      * </p>
      *
-     * @param dataStructureCategoriesAndMethodsMap a map where the key is the display name of a data structure category
+     * @param dataStructureCategoriesAndMethods a map where the key is the display name of a data structure category
      *                                             and the value is an array of {@link Method} objects representing
      *                                             the methods of the corresponding algorithm class.
      */
-    public void populateDataStructureCategoriesAndMethodsMap(HashMap<String, Method[]>
-                                                                     dataStructureCategoriesAndMethodsMap) {
+    public void populateDataStructureCategoriesAndMethodsMap(Map<String, Method[]>
+                                                                     dataStructureCategoriesAndMethods) {
 
         Arrays.stream(DataStructureCategories.values()).forEach(dataStructureCategory -> {
             switch(dataStructureCategory) {
                 case ARRAYS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             ArraysAlgorithms.class.getDeclaredMethods());
                     break;
                 case BINARY_SEARCH_TREES:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             BinarySearchTreesAlgorithms.class.getDeclaredMethods());
                     break;
                 case BINARY_TREES:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             BinaryTreesAlgorithms.class.getDeclaredMethods());
                     break;
                 case DYNAMIC_PROGRAMMING:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             DynamicProgrammingAlgorithms.class.getDeclaredMethods());
                     break;
                 case FAMOUS_ALGORITHMS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             FamousAlgorithms.class.getDeclaredMethods());
                     break;
                 case GRAPHS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             GraphsAlgorithms.class.getDeclaredMethods());
                     break;
                 case GREEDY_ALGORITHMS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             GreedyAlgorithms.class.getDeclaredMethods());
                     break;
                 case HEAPS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             HeapsAlgorithms.class.getDeclaredMethods());
                     break;
                 case LINKED_LISTS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             LinkedListsAlgorithms.class.getDeclaredMethods());
                     break;
                 case RECURSION:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             RecursionAlgorithms.class.getDeclaredMethods());
                     break;
                 case SEARCHING:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             SearchingAlgorithms.class.getDeclaredMethods());
                     break;
                 case SORTING:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             SortingAlgorithms.class.getDeclaredMethods());
                     break;
                 case STACKS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             StacksAlgorithms.class.getDeclaredMethods());
                     break;
                 case STRINGS:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             StringsAlgorithms.class.getDeclaredMethods());
                     break;
                 case TRIES:
-                    dataStructureCategoriesAndMethodsMap.put(dataStructureCategory.getDisplayName(),
+                    dataStructureCategoriesAndMethods.put(dataStructureCategory.getDisplayName(),
                             TriesAlgorithms.class.getDeclaredMethods());
                     break;
                 default:

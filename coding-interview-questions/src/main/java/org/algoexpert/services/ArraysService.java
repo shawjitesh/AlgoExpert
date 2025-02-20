@@ -6,7 +6,7 @@ import org.algoexpert.algorithms.arrays.easy.TwoNumberSum;
 import org.algoexpert.algorithms.arrays.hard.FourNumberSum;
 import org.algoexpert.algorithms.arrays.medium.ThreeNumberSum;
 import org.algoexpert.algorithms.arrays.veryhard.ApartmentHunting;
-import org.algoexpert.util.LoggerUtil;
+import org.algoexpert.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.algoexpert.util.AlgorithmNames.*;
+import static org.algoexpert.utils.AlgorithmNames.*;
 
 /**
  * Service class for executing array-related algorithms.

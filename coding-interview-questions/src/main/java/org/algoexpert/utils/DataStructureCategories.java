@@ -1,4 +1,4 @@
-package org.algoexpert.util;
+package org.algoexpert.utils;
 
 import lombok.Getter;
 
@@ -63,5 +63,20 @@ public enum DataStructureCategories {
      */
     DataStructureCategories(String displayName) {
         this.displayName = displayName;
+    }
+
+    /**
+     * Gets the enum constant with the specified display name.
+     *
+     * @param displayName the display name associated with the data structure category
+     * @return the enum constant with the specified display name, or null if no such constant exists
+     */
+    public static DataStructureCategories fromDisplayName(String displayName) {
+        for (DataStructureCategories category : DataStructureCategories.values()) {
+            if (category.getDisplayName().equals(displayName)) {
+                return category;
+            }
+        }
+        return null;
     }
 }

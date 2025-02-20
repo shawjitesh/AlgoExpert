@@ -1,4 +1,4 @@
-package org.algoexpert.util;
+package org.algoexpert.utils;
 
 /**
  * Utility class for storing algorithm names as constants.
@@ -8,7 +8,7 @@ package org.algoexpert.util;
  *
  * @author Jitesh Shaw
  */
-public class AlgorithmNames {
+public final class AlgorithmNames {
 
     /**
      * Constant representing the name of the "Two Number Sum" algorithm.
@@ -26,5 +26,9 @@ public class AlgorithmNames {
      * Constant representing the name of the "Apartment Hunting" algorithm.
      */
     public static final String APARTMENT_HUNTING = "apartmentHunting";
+    /**
+     * Constant representing the name of the "Find Closest Value In BST" algorithm.
+     */
+    public static final String FIND_CLOSEST_VALUE_IN_BST = "findClosestValueInBst";
 
 }

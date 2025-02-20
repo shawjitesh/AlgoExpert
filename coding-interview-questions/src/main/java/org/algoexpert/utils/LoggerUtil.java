@@ -1,4 +1,4 @@
-package org.algoexpert.util;
+package org.algoexpert.utils;
 
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
