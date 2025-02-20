@@ -1,6 +1,9 @@
 package org.algoexpert.algorithms.binarysearchtrees.easy;
 
 import org.algoexpert.algorithms.binarysearchtrees.BinarySearchTreesAlgorithms;
+import org.algoexpert.algorithms.binarysearchtrees.medium.ConstructBST;
+
+import java.util.List;
 
 /**
  * Write a function that takes in a Binary Search Tree (BST) and a target integer value and returns the closest value to
@@ -78,6 +81,7 @@ public class FindClosestValueInBST implements BinarySearchTreesAlgorithms {
      * </p>
      */
     public static class BST {
+
         public int value;
         public BST left;
         public BST right;
@@ -90,5 +94,14 @@ public class FindClosestValueInBST implements BinarySearchTreesAlgorithms {
         public BST(int value) {
             this.value = value;
         }
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public ConstructBST.BST constructBst(List<String[]> bstOperations) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

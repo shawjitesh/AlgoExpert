@@ -2,6 +2,7 @@ package org.algoexpert.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.algoexpert.algorithms.binarysearchtrees.easy.FindClosestValueInBST;
+import org.algoexpert.algorithms.binarysearchtrees.medium.ConstructBST;
 import org.algoexpert.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.algoexpert.utils.AlgorithmNames.CONSTRUCT_BST;
 import static org.algoexpert.utils.AlgorithmNames.FIND_CLOSEST_VALUE_IN_BST;
 
 /**
@@ -108,6 +112,14 @@ public class BinarySearchTreesService {
                     return false;
                 }
                 break;
+            case CONSTRUCT_BST:
+                try {
+                    executeConstructBst();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, CONSTRUCT_BST);
+                    return false;
+                }
+                break;
             default:
                 LOGGER.info("Algorithm not available");
         }
@@ -128,6 +140,7 @@ public class BinarySearchTreesService {
      * </p>
      */
     private void executeFindClosestValueInBst() {
+
         try {
             LOGGER.info("Enter the number of nodes in the BST");
             int n = Integer.parseInt(bufferedReader.readLine());
@@ -145,6 +158,48 @@ public class BinarySearchTreesService {
 
             int closestValue = new FindClosestValueInBST().findClosestValueInBst(tree, target);
             LOGGER.info("The value in the BST that is closest to the target value is: {}", closestValue);
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+        }
+    }
+
+    /**
+     * Executes the "Construct BST" algorithm.
+     * <p>
+     * This method reads the number of operations to perform on the Binary Search Tree (BST) and the details of each
+     * operation from the standard input. It constructs a BST by performing the specified operations in sequence.
+     * The operations can be "insert", "contains", or "remove". After performing all the operations, it logs the
+     * constructed BST.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
+    private void executeConstructBst() {
+
+        try {
+            LOGGER.info("Enter the number of operations to perform on the BST");
+            int n = Integer.parseInt(bufferedReader.readLine());
+
+            LOGGER.info("Enter the {} operations to perform on the BST", n);
+            List<String[]> bstOperations = new ArrayList<>();
+
+            for (int i = 0; i < n; i++) {
+                LOGGER.info("Enter the operation to perform (insert, contains, or remove)");
+                String operation = bufferedReader.readLine();
+
+                LOGGER.info("Enter the value to perform the operation on");
+                String value = bufferedReader.readLine();
+
+                bstOperations.add(new String[]{operation, value});
+            }
+
+            ConstructBST.BST bst = new ConstructBST().constructBst(bstOperations);
+            if (bst != null) {
+                LOGGER.info("BST constructed successfully: {}", bst);
+            } else {
+                LOGGER.info("The Constructed BST has no nodes to display, after applying all the operations");
+            }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
         }

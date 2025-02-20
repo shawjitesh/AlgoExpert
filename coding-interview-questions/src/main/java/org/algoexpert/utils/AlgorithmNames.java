@@ -30,5 +30,9 @@ public final class AlgorithmNames {
      * Constant representing the name of the "Find Closest Value In BST" algorithm.
      */
     public static final String FIND_CLOSEST_VALUE_IN_BST = "findClosestValueInBst";
+    /**
+     * Constant representing the name of the "BST Construction" algorithm.
+     */
+    public static final String CONSTRUCT_BST = "constructBst";
 
 }

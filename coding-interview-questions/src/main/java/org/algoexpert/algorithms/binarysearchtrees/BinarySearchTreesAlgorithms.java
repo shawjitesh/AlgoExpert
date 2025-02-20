@@ -1,7 +1,10 @@
 package org.algoexpert.algorithms.binarysearchtrees;
 
 import org.algoexpert.algorithms.binarysearchtrees.easy.FindClosestValueInBST;
+import org.algoexpert.algorithms.binarysearchtrees.medium.ConstructBST;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Interface for Binary Search Tree (BST) algorithms.
@@ -28,4 +31,13 @@ public interface BinarySearchTreesAlgorithms {
      * @return the value in the BST that is closest to the target value
      */
     int findClosestValueInBst(FindClosestValueInBST.BST tree, int target);
+    /**
+     * Constructs a Binary Search Tree (BST) by performing a series of operations.
+     *
+     * @param bstOperations a list of operations to perform on the BST, where each operation is represented as a string
+     *                      array with the operation type and the value
+     * @return the constructed BST after performing all the operations
+     * @throws IllegalArgumentException if an invalid operation type is encountered
+     */
+    ConstructBST.BST constructBst(List<String[]> bstOperations);
 }
