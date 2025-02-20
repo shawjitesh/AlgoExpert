@@ -40,4 +40,5 @@ public interface BinarySearchTreesAlgorithms {
      * @throws IllegalArgumentException if an invalid operation type is encountered
      */
     ConstructBST.BST constructBst(List<String[]> bstOperations);
+    boolean sameBsts(List<Integer> arrayOne, List<Integer> arrayTwo);
 }

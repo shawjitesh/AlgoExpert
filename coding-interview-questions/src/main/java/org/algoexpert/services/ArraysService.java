@@ -75,7 +75,7 @@ public class ArraysService {
                 try {
                     executeTwoNumberSum();
                 } catch (RuntimeException e) {
-                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, THREE_NUMBER_SUM);
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, TWO_NUMBER_SUM);
                     return false;
                 }
                 break;

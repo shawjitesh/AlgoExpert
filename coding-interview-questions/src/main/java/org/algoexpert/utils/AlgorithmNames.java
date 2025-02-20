@@ -34,5 +34,9 @@ public final class AlgorithmNames {
      * Constant representing the name of the "BST Construction" algorithm.
      */
     public static final String CONSTRUCT_BST = "constructBst";
+    /**
+     * Constant representing the name of the "Same BSTs" algorithm.
+     */
+    public static final String SAME_BSTS = "sameBsts";
 
 }

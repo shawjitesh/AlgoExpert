@@ -104,4 +104,13 @@ public class FindClosestValueInBST implements BinarySearchTreesAlgorithms {
     public ConstructBST.BST constructBst(List<String[]> bstOperations) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public boolean sameBsts(List<Integer> arrayOne, List<Integer> arrayTwo) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
 }

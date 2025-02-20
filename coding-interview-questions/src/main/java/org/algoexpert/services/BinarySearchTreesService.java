@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.algoexpert.utils.AlgorithmNames.CONSTRUCT_BST;
-import static org.algoexpert.utils.AlgorithmNames.FIND_CLOSEST_VALUE_IN_BST;
+import static org.algoexpert.utils.AlgorithmNames.*;
 
 /**
  * Service class for executing binarySearchTree-related algorithms.
@@ -120,6 +119,14 @@ public class BinarySearchTreesService {
                     return false;
                 }
                 break;
+                case SAME_BSTS:
+                try {
+                    executeSameBsts();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, SAME_BSTS);
+                    return false;
+                }
+                break;
             default:
                 LOGGER.info("Algorithm not available");
         }
@@ -203,5 +210,9 @@ public class BinarySearchTreesService {
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
         }
+    }
+
+    private void executeSameBsts() {
+
     }
 }
