@@ -21,7 +21,7 @@ import java.util.List;
  * single-node tree should simply do nothing.
  * <p> Each BST node has an integer value, a left child node, and a right child node. A node is said to be a valid BST
  * node if and only if it satisfies the BST property: its value is strictly greater than the values of every node to its
- * left; its value is less than or equal to the values of every node to tis right; and its children nodes are either
+ * left; its value is less than or equal to the values of every node to its right; and its children nodes are either
  * valid BST nodes themselves or None/null.
  * <pre>
  * Sample Usage:
