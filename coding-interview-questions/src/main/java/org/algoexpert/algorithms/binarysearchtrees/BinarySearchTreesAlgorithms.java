@@ -48,4 +48,12 @@ public interface BinarySearchTreesAlgorithms {
      * @return true if the two arrays represent the same BST, false otherwise
      */
     boolean sameBsts(List<Integer> arrayOne, List<Integer> arrayTwo);
+    /**
+     * Determines if two arrays represent the same Binary Search Tree (BST) in optimized approach.
+     *
+     * @param arrayOne the first array representing a BST
+     * @param arrayTwo the second array representing a BST
+     * @return true if the two arrays represent the same BST, false otherwise
+     */
+    boolean sameBstsOptimized(List<Integer> arrayOne, List<Integer> arrayTwo);
 }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.algoexpert.algorithms.binarysearchtrees.easy.FindClosestValueInBST;
 import org.algoexpert.algorithms.binarysearchtrees.hard.SameBSTs;
 import org.algoexpert.algorithms.binarysearchtrees.medium.ConstructBST;
+import org.algoexpert.algorithms.binarysearchtrees.veryhard.SameBSTsOptimized;
 import org.algoexpert.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,11 +121,19 @@ public class BinarySearchTreesService {
                     return false;
                 }
                 break;
-                case SAME_BSTS:
+            case SAME_BSTS:
                 try {
                     executeSameBsts();
                 } catch (RuntimeException e) {
                     loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, SAME_BSTS);
+                    return false;
+                }
+                break;
+            case SAME_BSTS_OPTIMIZED:
+                try {
+                    executeSameBstsOptimized();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, SAME_BSTS_OPTIMIZED);
                     return false;
                 }
                 break;
@@ -227,29 +236,72 @@ public class BinarySearchTreesService {
     private void executeSameBsts() {
 
         try {
-            LOGGER.info("Enter the size of the first array");
+            loggerUtil.promptToEnterFirstArraySize(LOGGER);
             int n = Integer.parseInt(bufferedReader.readLine());
 
             Integer[] arrayOne = new Integer[n];
-            LOGGER.info("Enter the elements of the first array");
+            loggerUtil.promptToEnterFirstArrayElements(LOGGER);
             for (int i = 0; i < n; i++) {
                 arrayOne[i] = Integer.parseInt(bufferedReader.readLine());
             }
 
-            LOGGER.info("Enter the size of the second array");
+            loggerUtil.promptToEnterSecondArraySize(LOGGER);
             int m = Integer.parseInt(bufferedReader.readLine());
 
             Integer[] arrayTwo = new Integer[m];
-            LOGGER.info("Enter the elements of the second array");
+            loggerUtil.promptToEnterSecondArrayElements(LOGGER);
             for (int i = 0; i < m; i++) {
                 arrayTwo[i] = Integer.parseInt(bufferedReader.readLine());
             }
 
             boolean result = new SameBSTs().sameBsts(List.of(arrayOne), List.of(arrayTwo));
             if (result) {
-                LOGGER.info("The two arrays represent the same Binary Search Tree");
+                loggerUtil.infoConfirmBST(LOGGER);
             } else {
-                LOGGER.info("The two arrays do not represent the same Binary Search Tree");
+                loggerUtil.infoConfirmNotBST(LOGGER);
+            }
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+        }
+    }
+
+    /**
+     * Executes the "Same BSTs Optimized" algorithm.
+     * <p>
+     * This method reads the sizes and elements of two arrays from the standard input. It then checks if the two arrays
+     * represent the same Binary Search Tree (BST) using the {@link SameBSTsOptimized#sameBstsOptimized(List, List)}
+     * method. The result is logged to the console.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
+    private void executeSameBstsOptimized() {
+
+        try {
+            loggerUtil.promptToEnterFirstArraySize(LOGGER);
+            int n = Integer.parseInt(bufferedReader.readLine());
+
+            Integer[] arrayOne = new Integer[n];
+            loggerUtil.promptToEnterFirstArrayElements(LOGGER);
+            for (int i = 0; i < n; i++) {
+                arrayOne[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+
+            loggerUtil.promptToEnterSecondArraySize(LOGGER);
+            int m = Integer.parseInt(bufferedReader.readLine());
+
+            Integer[] arrayTwo = new Integer[m];
+            loggerUtil.promptToEnterSecondArrayElements(LOGGER);
+            for (int i = 0; i < m; i++) {
+                arrayTwo[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+
+            boolean result = new SameBSTsOptimized().sameBstsOptimized(List.of(arrayOne), List.of(arrayTwo));
+            if (result) {
+                loggerUtil.infoConfirmBST(LOGGER);
+            } else {
+                loggerUtil.infoConfirmNotBST(LOGGER);
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);

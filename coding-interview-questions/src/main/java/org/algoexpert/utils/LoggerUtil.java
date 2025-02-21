@@ -59,4 +59,52 @@ public class LoggerUtil {
     public void warnErrorWhileExecutingAlgorithm(Logger LOGGER, String algorithmName) {
         LOGGER.warn("Error while executing algorithm \"{}\"", algorithmName);
     }
+    /**
+     * Logs a prompt message to enter the size of the first array.
+     *
+     * @param LOGGER the {@link Logger} instance used to log the prompt message
+     */
+    public void promptToEnterFirstArraySize(Logger LOGGER) {
+        LOGGER.info("Enter the size of the first array");
+    }
+    /**
+     * Logs a prompt message to enter the first array elements.
+     *
+     * @param LOGGER the {@link Logger} instance used to log the prompt message
+     */
+    public void promptToEnterFirstArrayElements(Logger LOGGER) {
+        LOGGER.info("Enter the elements of the first array");
+    }
+    /**
+     * Logs a prompt message to enter the size of the second array.
+     *
+     * @param LOGGER the {@link Logger} instance used to log the prompt message
+     */
+    public void promptToEnterSecondArraySize(Logger LOGGER) {
+        LOGGER.info("Enter the size of the second array");
+    }
+    /**
+     * Logs a prompt message to enter the second array elements.
+     *
+     * @param LOGGER the {@link Logger} instance used to log the prompt message
+     */
+    public void promptToEnterSecondArrayElements(Logger LOGGER) {
+        LOGGER.info("Enter the elements of the second array");
+    }
+    /**
+     * Logs a message indicating that the two arrays represent the same Binary Search Tree (BST).
+     *
+     * @param LOGGER the {@link Logger} instance used to log the message
+     */
+    public void infoConfirmBST(Logger LOGGER) {
+        LOGGER.info("The two arrays represent the same Binary Search Tree (BST)");
+    }
+    /**
+     * Logs a message indicating that the two arrays do not represent the same Binary Search Tree (BST).
+     *
+     * @param LOGGER the {@link Logger} instance used to log the message
+     */
+    public void infoConfirmNotBST(Logger LOGGER) {
+        LOGGER.info("The two arrays do not represent the same Binary Search Tree (BST)");
+    }
 }

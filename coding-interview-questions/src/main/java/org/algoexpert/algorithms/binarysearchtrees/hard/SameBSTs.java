@@ -32,8 +32,8 @@ import java.util.Objects;
  *    2        11    81
  *
  * Optimal Space & Time Complexity:
- * O(n^2) time | O(d) space - where n is the number of nodes in each array, respectively, and d is the depth of the BST
- * that they represent
+ * O(n^2) time | O(n^2) space - where n is the number of nodes in each array, respectively, and d is the depth of the
+ * BST that they represent
  * </pre>
  *
  * @author Jitesh Shaw
@@ -130,6 +130,15 @@ public class SameBSTs implements BinarySearchTreesAlgorithms {
      */
     @Override
     public ConstructBST.BST constructBst(List<String[]> bstOperations) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public boolean sameBstsOptimized(List<Integer> arrayOne, List<Integer> arrayTwo) {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }
