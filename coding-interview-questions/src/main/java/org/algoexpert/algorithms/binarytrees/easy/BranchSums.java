@@ -2,6 +2,7 @@ package org.algoexpert.algorithms.binarytrees.easy;
 
 import lombok.Data;
 import org.algoexpert.algorithms.binarytrees.BinaryTreesAlgorithms;
+import org.algoexpert.algorithms.binarytrees.medium.InvertBinaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,7 @@ public class BranchSums implements BinaryTreesAlgorithms {
         public BinaryTree right;
 
         /**
-         * Constructs a BST node with the specified value.
+         * Constructs a Binary Tree node with the specified value.
          *
          * @param value the integer value of the node
          */
@@ -108,5 +109,14 @@ public class BranchSums implements BinaryTreesAlgorithms {
 
         calculateBranchSums(node.left, newRunningSum, branchSums);
         calculateBranchSums(node.right, newRunningSum, branchSums);
+    }
+
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public InvertBinaryTree.BinaryTree invertBinaryTree(InvertBinaryTree.BinaryTree tree) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 }

@@ -1,6 +1,7 @@
 package org.algoexpert.algorithms.binarytrees;
 
 import org.algoexpert.algorithms.binarytrees.easy.BranchSums;
+import org.algoexpert.algorithms.binarytrees.medium.InvertBinaryTree;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,4 +30,11 @@ public interface BinaryTreesAlgorithms {
      * @return a list of integers representing the sums of all branches in the tree
      */
     List<Integer> branchSums(BranchSums.BinaryTree root);
+    /**
+     * Inverts a binary tree.
+     *
+     * @param tree the root of the binary tree to be inverted
+     * @return the root of the inverted binary tree
+     */
+    InvertBinaryTree.BinaryTree invertBinaryTree(InvertBinaryTree.BinaryTree tree);
 }

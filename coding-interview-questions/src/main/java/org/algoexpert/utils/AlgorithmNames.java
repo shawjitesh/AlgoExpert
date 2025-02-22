@@ -50,5 +50,9 @@ public final class AlgorithmNames {
      * Constant representing the name of the "Branch Sums" algorithm.
      */
     public static final String BRANCH_SUMS = "branchSums";
+    /**
+     * Constant representing the name of the "Invert Binary Tree" algorithm.
+     */
+    public static final String INVERT_BINARY_TREE = "invertBinaryTree";
 
 }

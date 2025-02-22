@@ -1,7 +1,9 @@
 package org.algoexpert.services;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.algoexpert.algorithms.binarytrees.easy.BranchSums;
+import org.algoexpert.algorithms.binarytrees.medium.InvertBinaryTree;
 import org.algoexpert.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.algoexpert.utils.AlgorithmNames.BRANCH_SUMS;
+import static org.algoexpert.utils.AlgorithmNames.INVERT_BINARY_TREE;
 
 /**
  * Service class for executing binaryTree-related algorithms.
@@ -67,7 +70,7 @@ public class BinaryTreesService {
      * @param binaryTreeNodes an array of integers representing the values of the nodes in the binary tree
      * @return the root of the constructed binary tree, or null if the input array is empty
      */
-    private BranchSums.BinaryTree getBinaryTree(int[] binaryTreeNodes) {
+    private BranchSums.BinaryTree getBinaryTreeForBranchSums(int[] binaryTreeNodes) {
 
         int n = binaryTreeNodes.length;
         if(n == 0) {
@@ -80,6 +83,46 @@ public class BinaryTreesService {
 
         for (int i = 1; i < n; i++) {
             BranchSums.BinaryTree newTreeNode = new BranchSums.BinaryTree(binaryTreeNodes[i]);
+            treeNodes[i] = newTreeNode;
+
+            int parentIdx = (i - 1) / 2;
+            if (i % 2 != 0) {
+                treeNodes[parentIdx].left = newTreeNode;
+            } else {
+                treeNodes[parentIdx].right = newTreeNode;
+            }
+        }
+
+        return root;
+    }
+
+    /**
+     * Constructs a binary tree from an array of node values.
+     * <p>
+     * This method takes an array of integers representing the values of the nodes in a binary tree and constructs the
+     * binary tree in a level-order manner. The first element of the array becomes the root of the tree, and later
+     * elements are added as left and right children in the order they appear in the array.
+     * </p>
+     * <p>
+     * If the input array is empty, the method returns null.
+     * </p>
+     *
+     * @param binaryTreeNodes an array of integers representing the values of the nodes in the binary tree
+     * @return the root of the constructed binary tree, or null if the input array is empty
+     */
+    private InvertBinaryTree.BinaryTree getBinaryTreeForInvertBinaryTree(int[] binaryTreeNodes) {
+
+        int n = binaryTreeNodes.length;
+        if(n == 0) {
+            return null;
+        }
+
+        InvertBinaryTree.BinaryTree root = new InvertBinaryTree.BinaryTree(binaryTreeNodes[0]);
+        InvertBinaryTree.BinaryTree[] treeNodes = new InvertBinaryTree.BinaryTree[n];
+        treeNodes[0] = root;
+
+        for (int i = 1; i < n; i++) {
+            InvertBinaryTree.BinaryTree newTreeNode = new InvertBinaryTree.BinaryTree(binaryTreeNodes[i]);
             treeNodes[i] = newTreeNode;
 
             int parentIdx = (i - 1) / 2;
@@ -113,6 +156,14 @@ public class BinaryTreesService {
                     return false;
                 }
                 break;
+            case INVERT_BINARY_TREE:
+                try {
+                    executeInvertBinaryTree();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, INVERT_BINARY_TREE);
+                    return false;
+                }
+                break;
             default:
                 LOGGER.info("Algorithm not available");
         }
@@ -137,21 +188,61 @@ public class BinaryTreesService {
     private void executeBranchSums() {
 
         try {
-            LOGGER.info("Enter the number of nodes in the Binary Tree");
+            loggerUtil.promptToEnterNumberOfNodesInBinaryTree(LOGGER);
             int n = Integer.parseInt(bufferedReader.readLine());
 
             int[] binaryTreeNodes = new int[n];
-            LOGGER.info("Enter the values of {} nodes in the Binary Tree", n);
+            loggerUtil.promptToEnterValuesOfNodesInBinaryTree(LOGGER, n);
             for (int i = 0; i < n; i++) {
                 binaryTreeNodes[i] = Integer.parseInt(bufferedReader.readLine());
             }
 
-            BranchSums.BinaryTree binaryTree = getBinaryTree(binaryTreeNodes);
+            BranchSums.BinaryTree binaryTree = getBinaryTreeForBranchSums(binaryTreeNodes);
             if (binaryTree != null) {
                 List<Integer> branchSums = new BranchSums().branchSums(binaryTree);
                 LOGGER.info("The branch sums for the provided Binary Tree are {}", branchSums);
             } else {
-                LOGGER.warn("Empty Binary Tree provided!");
+                loggerUtil.warnEmptyBinaryTree(LOGGER);
+            }
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+        }
+    }
+
+    /**
+     * Executes the Invert Binary Tree algorithm on a binary tree.
+     * <p>
+     * This method prompts the user to enter the number of nodes in the binary tree and their values. It then constructs
+     * the binary tree using the provided values and inverts the binary tree. The original and inverted binary trees are
+     * logged as output.
+     * </p>
+     * <p>
+     * If an empty binary tree is provided, a warning is logged. If an error occurs while reading input, a warning is
+     * logged with the error details.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
+    private void executeInvertBinaryTree() {
+
+        try {
+            loggerUtil.promptToEnterNumberOfNodesInBinaryTree(LOGGER);
+            int n = Integer.parseInt(bufferedReader.readLine());
+
+            int[] binaryTreeNodes = new int[n];
+            loggerUtil.promptToEnterValuesOfNodesInBinaryTree(LOGGER, n);
+            for (int i = 0; i < n; i++) {
+                binaryTreeNodes[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+
+            InvertBinaryTree.BinaryTree binaryTree = getBinaryTreeForInvertBinaryTree(binaryTreeNodes);
+            if (binaryTree != null) {
+                LOGGER.info("Provided Binary Tree: {}", binaryTree);
+                InvertBinaryTree.BinaryTree invertedBinaryTree = new InvertBinaryTree().invertBinaryTree(binaryTree);
+                LOGGER.info("The inverted Binary Tree is: {}", invertedBinaryTree);
+            } else {
+                loggerUtil.warnEmptyBinaryTree(LOGGER);
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
