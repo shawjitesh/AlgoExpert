@@ -42,5 +42,9 @@ public final class AlgorithmNames {
      * Constant representing the name of the "Same BSTs Optimized" algorithm.
      */
     public static final String SAME_BSTS_OPTIMIZED = "sameBstsOptimized";
+    /**
+     * Constant representing the name of the "Right Smaller Than" algorithm.
+     */
+    public static final String RIGHT_SMALLER_THAN = "rightSmallerThan";
 
 }

@@ -56,4 +56,12 @@ public interface BinarySearchTreesAlgorithms {
      * @return true if the two arrays represent the same BST, false otherwise
      */
     boolean sameBstsOptimized(List<Integer> arrayOne, List<Integer> arrayTwo);
+    /**
+     * Finds the number of elements to the right of each element in the array that are smaller than the element itself.
+     *
+     * @param array the list of integers to process
+     * @return a list of integers where each integer is the count of smaller elements to the right for the corresponding
+     * element in the input array
+     */
+    List<Integer> rightSmallerThan(List<Integer> array);
 }

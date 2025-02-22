@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.algoexpert.algorithms.binarysearchtrees.easy.FindClosestValueInBST;
 import org.algoexpert.algorithms.binarysearchtrees.hard.SameBSTs;
 import org.algoexpert.algorithms.binarysearchtrees.medium.ConstructBST;
+import org.algoexpert.algorithms.binarysearchtrees.veryhard.RightSmallerThan;
 import org.algoexpert.algorithms.binarysearchtrees.veryhard.SameBSTsOptimized;
 import org.algoexpert.utils.LoggerUtil;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.algoexpert.utils.AlgorithmNames.*;
@@ -134,6 +136,14 @@ public class BinarySearchTreesService {
                     executeSameBstsOptimized();
                 } catch (RuntimeException e) {
                     loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, SAME_BSTS_OPTIMIZED);
+                    return false;
+                }
+                break;
+            case RIGHT_SMALLER_THAN:
+                try {
+                    executeRightSmallerThan();
+                } catch (RuntimeException e) {
+                    loggerUtil.warnErrorWhileExecutingAlgorithm(LOGGER, RIGHT_SMALLER_THAN);
                     return false;
                 }
                 break;
@@ -302,6 +312,41 @@ public class BinarySearchTreesService {
                 loggerUtil.infoConfirmBST(LOGGER);
             } else {
                 loggerUtil.infoConfirmNotBST(LOGGER);
+            }
+        } catch (IOException e) {
+            loggerUtil.warnErrorWhileReadingInput(LOGGER, e);
+        }
+    }
+
+    /**
+     * Executes the "Right Smaller Than" algorithm.
+     * <p>
+     * This method reads the size and elements of an array from the standard input. It then finds the number of elements
+     * to the right of each element in the array that are smaller than the element itself using the
+     * {@link RightSmallerThan#rightSmallerThan(List)} method. The result is logged to the console.
+     * </p>
+     * <p>
+     * The method handles any {@link IOException} that may occur during input reading and logs an error message.
+     * </p>
+     */
+    private void executeRightSmallerThan() {
+
+        try {
+            loggerUtil.promptToEnterArraySize(LOGGER);
+            int n = Integer.parseInt(bufferedReader.readLine());
+
+            Integer[] array = new Integer[n];
+            loggerUtil.promptToEnterArrayElements(LOGGER);
+
+            for (int i = 0; i < n; i++) {
+                array[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+
+            List<Integer> result = new RightSmallerThan().rightSmallerThan(Arrays.asList(array));
+            if (result.isEmpty()) {
+                LOGGER.info("No such elements present, as the input array is sorted in ascending order");
+            } else {
+                LOGGER.info("Right Smaller Counts: {}", result);
             }
         } catch (IOException e) {
             loggerUtil.warnErrorWhileReadingInput(LOGGER, e);

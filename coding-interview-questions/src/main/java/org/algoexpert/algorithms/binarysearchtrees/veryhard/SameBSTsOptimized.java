@@ -172,4 +172,13 @@ public class SameBSTsOptimized implements BinarySearchTreesAlgorithms {
         throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
     }
 
+    /**
+     * This method throws an {@link UnsupportedOperationException} indicating that the implementation for this algorithm
+     * is not provided in this class.
+     */
+    @Override
+    public List<Integer> rightSmallerThan(List<Integer> array) {
+        throw new UnsupportedOperationException("Implementation for this algorithm is not a part of this class");
+    }
+
 }
