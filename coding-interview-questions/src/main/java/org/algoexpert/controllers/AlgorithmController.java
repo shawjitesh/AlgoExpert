@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 
 import org.algoexpert.services.ArraysService;
 import org.algoexpert.services.BinarySearchTreesService;
+import org.algoexpert.services.BinaryTreesService;
 import org.algoexpert.utils.DataStructureCategories;
 import org.algoexpert.utils.JavaReflectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class AlgorithmController {
     private final JavaReflectionUtil javaReflectionUtil;
     private final ArraysService arraysService;
     private final BinarySearchTreesService binarySearchTreesService;
+    private final BinaryTreesService binaryTreesService;
     private final Map<String, Method[]> dataStructureCategoriesAndMethods = new HashMap<>();
 
     /**
@@ -57,10 +59,12 @@ public class AlgorithmController {
      */
     @Autowired
     public AlgorithmController(JavaReflectionUtil javaReflectionUtil, ArraysService arraysService,
-                               BinarySearchTreesService binarySearchTreesService) {
+                               BinarySearchTreesService binarySearchTreesService,
+                               BinaryTreesService binaryTreesService) {
         this.javaReflectionUtil = javaReflectionUtil;
         this.arraysService = arraysService;
         this.binarySearchTreesService = binarySearchTreesService;
+        this.binaryTreesService = binaryTreesService;
     }
 
     /**
@@ -120,6 +124,16 @@ public class AlgorithmController {
                     if(Arrays.stream(dataStructureCategoriesAndMethods.get(datastructureCategory))
                             .anyMatch(method -> method.getName().equals(algorithmName))) {
                         if (binarySearchTreesService.executeAlgorithm(algorithmName)) {
+                            return getSuccessfulAlgorithmExecutionResponse(algorithmName, datastructureCategory);
+                        }
+                        return getErrorWhileExecutingAlgorithmResponse(algorithmName, datastructureCategory);
+                    }
+                    return getAlgorithmNotAvailableResponse(algorithmName, datastructureCategory);
+                }
+                case BINARY_TREES -> {
+                    if(Arrays.stream(dataStructureCategoriesAndMethods.get(datastructureCategory))
+                            .anyMatch(method -> method.getName().equals(algorithmName))) {
+                        if (binaryTreesService.executeAlgorithm(algorithmName)) {
                             return getSuccessfulAlgorithmExecutionResponse(algorithmName, datastructureCategory);
                         }
                         return getErrorWhileExecutingAlgorithmResponse(algorithmName, datastructureCategory);

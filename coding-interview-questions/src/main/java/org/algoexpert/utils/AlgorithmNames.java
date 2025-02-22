@@ -46,5 +46,9 @@ public final class AlgorithmNames {
      * Constant representing the name of the "Right Smaller Than" algorithm.
      */
     public static final String RIGHT_SMALLER_THAN = "rightSmallerThan";
+    /**
+     * Constant representing the name of the "Branch Sums" algorithm.
+     */
+    public static final String BRANCH_SUMS = "branchSums";
 
 }

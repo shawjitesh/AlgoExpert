@@ -52,6 +52,7 @@ public class ArraysService {
      * </p>
      *
      * @param loggerUtil an instance of {@link LoggerUtil} used for logging prompts and warnings
+     * @param bufferedReader the BufferedReader instance for reading input
      */
     @Autowired
     public ArraysService(LoggerUtil loggerUtil, BufferedReader bufferedReader) {
